@@ -28,6 +28,26 @@ public class AlienInvadersWindow : EditorWindow
 
     private void OnGUI()
     {
+        if (m_PlayerTexture == null)
+        {
+            m_PlayerTexture = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Editor/AlienInvadersWindow/Ship.png");
+            m_PlayerPositionRect.width = m_PlayerTexture.width;
+            m_PlayerPositionRect.height = m_PlayerTexture.height;
+        }
+
+        if (m_PlayerBulletTexture == null)
+        {
+            m_PlayerBulletTexture =
+                AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Editor/AlienInvadersWindow/Bullet.png");
+            m_BulletPositionRect.width = m_PlayerBulletTexture.width;
+            m_BulletPositionRect.height = m_PlayerBulletTexture.height;
+        }
+
+        if (m_EnemyTexture == null)
+        {
+            m_EnemyTexture = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Editor/AlienInvadersWindow/Enemy.png");
+        }
+
         GUILayout.Label("Game Settings", EditorStyles.boldLabel);
         m_GroupEnabled = EditorGUILayout.BeginToggleGroup("Unlock Settings", m_GroupEnabled);
         m_IsBulletInFlight = EditorGUILayout.Toggle("Is Bullet In Flight", m_IsBulletInFlight);
@@ -56,10 +76,10 @@ public class AlienInvadersWindow : EditorWindow
             m_BulletPositionRect.height = m_PlayerBulletTexture.height;
         }
 
-//        m_EnemyPositionRect = EditorGUILayout.RectField("Enemy Position", m_EnemyPositionRect);
         EditorGUI.BeginChangeCheck();
         m_EnemyTexture =
             EditorGUILayout.ObjectField("Enemy Texture", m_EnemyTexture, typeof(Texture2D), false) as Texture2D;
+        EditorGUILayout.EndToggleGroup();
 
         if (GUILayout.Button("Reset Game"))
         {
