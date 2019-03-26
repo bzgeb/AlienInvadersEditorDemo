@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AlienInvadersWindow : EditorWindow
 {
-    private string m_MyString;
     private bool m_GroupEnabled;
     private bool m_IsBulletInFlight;
     private float m_BulletSpeed = 1;
@@ -131,13 +130,6 @@ public class AlienInvadersWindow : EditorWindow
                 evt.Use();
             }
         }
-
-        // Use every event?
-//        if (this == focusedWindow && evt.type != EventType.Used && evt.type != EventType.Layout &&
-//            evt.type != EventType.Repaint)
-//        {
-//            evt.Use();
-//        }
 
         if (m_IsBulletInFlight)
         {
